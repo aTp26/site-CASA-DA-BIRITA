@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa da Birita | Distribuidora Premium</title>
-    <!-- Ícones FontAwesome -->
+    <!-- ÍCONES -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
     <style>
         /* ==================================================================
-           CÓDIGO BASE APROVADO (LAYOUT CLEAN / PREMIUM)
+           CÓDIGO ORIGINAL APROVADO (BASE SÓLIDA)
            ================================================================== */
         :root {
             --primary: #d4af37; /* Dourado */
@@ -26,7 +26,7 @@
         
         body { background-color: #f4f7f6; color: var(--dark); padding-bottom: 80px; }
 
-        /* --- MODAIS (FUNCIONALIDADE) --- */
+        /* --- MODAIS DO SISTEMA (ESTRUTURA APROVADA) --- */
         .system-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 9999;
@@ -45,7 +45,7 @@
         
         .btn-modal-action { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 10px; text-transform: uppercase; }
 
-        /* --- LAYOUT GERAL --- */
+        /* --- CABEÇALHO (APROVADO) --- */
         .top-bar { background: var(--dark); color: white; text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 500; }
         
         header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
@@ -64,21 +64,21 @@
         .menu-list li a { display: block; padding: 15px 20px; text-decoration: none; color: var(--gray); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
         .menu-list li a:hover { color: var(--primary); border-bottom: 3px solid var(--primary); }
 
-        /* --- HERO (ALTERAÇÃO SOLICITADA: SÓ A FOTO) --- */
+        /* --- HERO (ALTERADO AQUI: FOTO CENTRALIZADA SEM TEXTO) --- */
         .hero { 
             width: 100%;
-            height: 600px; /* Altura grande para a foto aparecer bem */
+            height: 500px; /* Altura fixa para o banner aparecer */
             
-            /* FOTO "BRINDE AO PÔR DO SOL" */
+            /* FOTO 3: Brinde ao Pôr do Sol */
             background-image: url('https://images.unsplash.com/photo-1574096079513-d82599602950?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
             
-            display: block;
+            /* Removemos flexbox para não alinhar nada, pois está vazio */
+            display: block; 
             border-bottom: 5px solid var(--primary);
-            margin-bottom: 30px;
         }
 
         /* --- PRODUTOS --- */
@@ -104,6 +104,11 @@
         .steps { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px; gap: 20px; }
         .step-item { flex: 1; min-width: 200px; }
         .step-num { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
+
+        /* --- RODAPÉ (APROVADO) --- */
+        footer { background: #1a1a1a; color: white; padding: 40px 0; margin-top: 20px; text-align: center; }
+        .logo-footer { height: 100px; filter: grayscale(1); }
+        .footer-info { margin-top: 20px; border-top: 1px solid #333; padding-top: 20px; }
 
         /* --- WHATSAPP FLUTUANTE --- */
         .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 9000; }
@@ -166,10 +171,11 @@
     <!-- TOPO -->
     <div class="top-bar"><i class="fas fa-truck"></i> ENTREGA EXPRESSA EM TODA A REGIÃO</div>
 
-    <!-- HEADER (APROVADO) -->
+    <!-- HEADER -->
     <header>
         <div class="header-main">
             <a href="#" class="logo-container"><img src="https://i.postimg.cc/J7JXtLYg/Casa-Da-Birita-2.png" alt="Casa da Birita" class="logo-img"></a>
+            
             <div class="nav-icons">
                 <a href="https://www.instagram.com/casa.da.birita" target="_blank" style="color:#1a1a1a"><i class="fab fa-instagram"></i></a>
                 <div class="cart-trigger" onclick="abrirModal('modalCarrinho')">
@@ -178,6 +184,7 @@
                 </div>
             </div>
         </div>
+
         <nav class="category-menu">
             <ul class="menu-list">
                 <li><a href="#combos">COMBOS</a></li>
@@ -188,13 +195,15 @@
         </nav>
     </header>
 
-    <!-- HERO (APENAS A IMAGEM NO CENTRO, SEM TEXTO) -->
+    <!-- HERO (APENAS FOTO, SEM TEXTO) -->
     <section class="hero"></section>
 
     <!-- PRODUTOS -->
     <div class="container" id="combos">
         <h3 class="section-title">🔥 Destaques da Casa</h3>
-        <div class="product-grid" id="productsGrid"></div>
+        <div class="product-grid" id="productsGrid">
+            <!-- JS -->
+        </div>
     </div>
 
     <!-- FIDELIDADE -->
@@ -213,12 +222,12 @@
     </section>
 
     <!-- RODAPÉ (RESTAURADO) -->
-    <footer style="background: #1a1a1a; color: white; padding: 40px 0; margin-top: 20px; text-align: center;">
+    <footer>
         <div class="container">
-            <img src="https://i.postimg.cc/J7JXtLYg/Casa-Da-Birita-2.png" style="height:80px; filter:grayscale(1);">
-            <div style="margin-top:20px; border-top:1px solid #333; padding-top:20px;">
+            <img src="https://i.postimg.cc/J7JXtLYg/Casa-Da-Birita-2.png" class="logo-footer">
+            <div class="footer-info">
                 <p>Théo: 99962-8414 | Matheus: 99806-2498</p>
-                <p style="font-size:0.8rem; margin-top:10px;">© 2026 Casa da Birita</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">© 2026 Casa da Birita</p>
             </div>
         </div>
     </footer>
@@ -246,7 +255,7 @@
             { id: 3, name: "Whisky Red Label 1L", price: 99.90, img: "https://images.unsplash.com/photo-1527281400683-1aed5705f54e?q=80&w=600" }
         ];
 
-        let carrinho = [];
+        let cart = [];
 
         const grid = document.getElementById('productsGrid');
         products.forEach(p => {
@@ -257,56 +266,59 @@
                     <div class="product-cat">Combo</div>
                     <div class="product-name">${p.name}</div>
                     <div class="new-price">R$ ${p.price.toFixed(2).replace('.',',')}</div>
-                    <button class="btn-buy" onclick="addCart(${p.id})">ADICIONAR</button>
+                    <button class="btn-buy" onclick="addToCart(${p.id})">ADICIONAR</button>
                 </div>
             `;
         });
 
-        function addCart(id) {
-            const p = products.find(x => x.id === id);
-            carrinho.push(p);
-            renderCart();
-            alert('Adicionado!');
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            cart.push(prod);
+            updateCartUI();
+            
+            const badge = document.getElementById('cartCount');
+            badge.style.display = "block";
+            badge.innerText = cart.length;
         }
 
-        function renderCart() {
-            document.getElementById('cartCount').innerText = carrinho.length;
-            document.getElementById('cartCount').style.display = carrinho.length ? 'block' : 'none';
-            
+        function updateCartUI() {
+            document.getElementById('cartCount').innerText = cart.length;
             const list = document.getElementById('listaCarrinho');
-            if(!carrinho.length) {
-                list.innerHTML = '<p style="text-align:center; color:#999">Vazio</p>';
-                document.getElementById('totalCarrinho').innerText = 'Total: R$ 0,00';
+            const totalEl = document.getElementById('totalCarrinho');
+            
+            if(cart.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: #999;">Carrinho vazio.</p>';
+                totalEl.innerText = "Total: R$ 0,00";
                 return;
             }
 
-            let html = '';
+            let html = "";
             let total = 0;
-            carrinho.forEach(i => {
-                total += i.price;
-                html += `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${i.name}</span><span>R$ ${i.price.toFixed(2)}</span></div>`;
+            carrinho.forEach(item => {
+                total += item.price;
+                html += `<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>${item.name}</span><span>R$ ${item.price.toFixed(2)}</span></div>`;
             });
             list.innerHTML = html;
-            document.getElementById('totalCarrinho').innerText = 'Total: R$ ' + total.toFixed(2);
+            totalEl.innerText = "Total: R$ " + total.toFixed(2).replace('.',',');
         }
 
         function enviarZap() {
-            if(!carrinho.length) return alert('Carrinho vazio');
+            if(cart.length === 0) return alert('Seu carrinho está vazio!');
             const nome = document.getElementById('nomeCliente').value;
             const end = document.getElementById('enderecoCliente').value;
             const pag = document.getElementById('pagamentoCliente').value;
-            if(!nome || !end) return alert('Preencha os dados');
+            if(!nome || !end) return alert('Preencha os dados!');
 
-            let msg = `*PEDIDO SITE* 🛒\n*Cliente:* ${nome}\n*Endereço:* ${end}\n*Pag:* ${pag}\n\n*ITENS:*\n`;
+            let msg = `*NOVO PEDIDO* 🛒\n*Cliente:* ${nome}\n*Endereço:* ${end}\n*Pag:* ${pag}\n\n*ITENS:*\n`;
             let total = 0;
-            carrinho.forEach(i => { msg += `- ${i.name}\n`; total += i.price; });
+            carrinho.forEach(item => { msg += `- ${item.name}\n`; total += item.price; });
             msg += `\n*TOTAL: R$ ${total.toFixed(2)}*`;
+
             window.open(`https://wa.me/5532999628414?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
         function fecharModal(id) { document.getElementById(id).style.display = 'none'; }
-        
         window.onclick = function(e) {
             if(e.target.className.includes('modal') || e.target.className.includes('modal-overlay')) {
                 e.target.style.display = 'none';
