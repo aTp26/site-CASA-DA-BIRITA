@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa da Birita | Clube de Fidelidade</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* ==================================================================
+           ESTILO ORIGINAL (VERSÃO APROVADA) - NADA FOI ALTERADO AQUI
+           ================================================================== */
+        :root {
+            --primary: #d4af37;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --red: #e74c3c;
+            --gray: #666;
+            --border: #eee;
+            --whatsapp: #25D366;
+            --instagram: #E1306C;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        body { background-color: #f4f7f6; color: var(--dark); padding-bottom: 80px; }
+
+        /* --- TOP BAR --- */
+        .top-bar { background: var(--dark); color: white; text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 500; }
+
+        /* --- HEADER --- */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+
+        .header-main { display: flex; justify-content: space-between; align-items: center; padding: 5px 5%; max-width: 1200px; margin: 0 auto; }
+
+        .logo-container { display: flex; align-items: center; }
+        .logo-img { height: 140px; width: auto; object-fit: contain; mix-blend-mode: multiply; filter: contrast(1.1); transition: 0.3s; }
+        .logo-img:hover { transform: scale(1.05); }
+
+        .search-bar { flex: 1; margin: 0 40px; position: relative; display: none; }
+        @media(min-width: 768px) { .search-bar { display: block; } }
+
+        .search-bar input { width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; background: #f5f5f5; outline: none; }
+        
+        /* ÍCONES */
+        .nav-icons { display: flex; gap: 20px; font-size: 1.2rem; color: var(--dark); align-items: center; }
+        .nav-icons a { color: var(--dark); text-decoration: none; transition: 0.3s; display: flex; align-items: center; }
+        .nav-icons a:hover { color: var(--primary); }
+        .cart-trigger { cursor: pointer; position: relative; } /* Classe utilitária para o ícone */
+
+        /* --- MENU --- */
+        .category-menu { background: var(--white); border-top: 1px solid var(--border); overflow-x: auto; white-space: nowrap; padding: 0 5%; }
+        .menu-list { display: flex; justify-content: center; list-style: none; max-width: 1200px; margin: 0 auto; }
+        .menu-list li a { display: block; padding: 15px 20px; text-decoration: none; color: var(--gray); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; cursor: pointer; }
+        .menu-list li a:hover { color: var(--primary); border-bottom: 3px solid var(--primary); }
+
+        /* --- HERO --- */
+        .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1574096079513-d82599602950?q=80&w=2000'); background-size: cover; background-position: center; height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 20px; }
+        .hero h2 { font-size: 3rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; margin-bottom: 25px; }
+        .btn-hero { background: var(--primary); color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; text-transform: uppercase; transition: 0.3s; cursor: pointer; border:none; font-size:1rem;}
+        .btn-hero:hover { background: #b59226; transform: translateY(-2px); }
+        
+        /* --- FIDELIDADE --- */
+        .fidelidade-section { background: linear-gradient(135deg, #000 0%, #1a1a1a 100%); color: white; padding: 60px 5%; margin: 40px 0; text-align: center; border-radius: 0; }
+        .fidelidade-box { max-width: 800px; margin: 0 auto; border: 2px solid var(--primary); padding: 30px; border-radius: 15px; position: relative; }
+        .crown-icon { font-size: 3rem; color: var(--primary); background: #000; padding: 0 20px; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); }
+        .steps { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 30px; gap: 20px; }
+        .step-item { flex: 1; min-width: 200px; }
+        .step-num { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
+
+        /* --- PRODUTOS --- */
+        .section-title { text-align: center; margin: 50px 0 30px; font-size: 1.8rem; color: var(--dark); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; padding-bottom: 50px; }
+
+        .product-card { background: white; border-radius: 8px; padding: 15px; position: relative; transition: 0.3s; border: 1px solid transparent; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+
+        .badge { position: absolute; top: 10px; left: 10px; background: var(--red); color: white; padding: 4px 10px; font-size: 0.75rem; border-radius: 4px; font-weight: bold; z-index: 2; }
+
+        .product-img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+        .product-cat { color: var(--gray); font-size: 0.8rem; text-transform: uppercase; }
+        .product-name { font-size: 1rem; color: var(--dark); font-weight: 600; margin: 5px 0 10px; height: 40px; overflow: hidden; } 
+        
+        .price-label { font-size: 0.8rem; color: #888; margin-bottom: 2px; }
+        .new-price { color: var(--dark); font-size: 1.5rem; font-weight: 800; display: block; margin-bottom: 5px; }
+
+        .btn-buy { display: block; width: 100%; padding: 10px; background: var(--whatsapp); color: white; border: none; border-radius: 5px; margin-top: 15px; font-weight: bold; text-align: center; text-decoration: none; transition: 0.2s; cursor: pointer; font-size: 1rem; }
+        .btn-buy:hover { background: #1ebc57; }
+
+        /* --- WHATSAPP FLUTUANTE --- */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 9000; font-family: 'Segoe UI', sans-serif; }
+        .whatsapp-btn-main { background: var(--whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; transition: 0.3s; }
+        .whatsapp-btn-main:hover { transform: scale(1.1); }
+        .whatsapp-menu { position: absolute; bottom: 70px; right: 0; background: white; border-radius: 10px; padding: 10px; width: 220px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: none; flex-direction: column; gap: 10px; }
+        .whatsapp-float:hover .whatsapp-menu { display: flex; }
+        .whatsapp-item { display: flex; align-items: center; text-decoration: none; color: var(--dark); padding: 8px; border-radius: 5px; transition: 0.2s; border: 1px solid #eee; }
+        .whatsapp-item:hover { background: #f0fff4; border-color: var(--whatsapp); }
+        .whatsapp-item i { margin-right: 10px; color: var(--whatsapp); font-size: 1.2rem; }
+        .whatsapp-item div { display: flex; flex-direction: column; }
+        .wa-name { font-weight: bold; font-size: 0.9rem; }
+        .wa-num { font-size: 0.8rem; color: #666; }
+
+        /* --- MODAL IDADE (MANTIDO) --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; }
+        .modal-box { background: white; padding: 40px; border-radius: 10px; text-align: center; max-width: 400px; width: 90%; }
+        .btn-age { padding: 12px 30px; margin: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+        .btn-yes { background: var(--primary); color: white; }
+
+        @media(max-width: 768px) {
+            .menu-list { justify-content: flex-start; }
+            .header-main { flex-direction: column; gap: 15px; }
+            .logo-img { height: 100px; }
+            .steps { flex-direction: column; }
+            .whatsapp-menu { display: none; } 
+            .whatsapp-float:active .whatsapp-menu { display: flex; }
+        }
+
+        /* ==================================================================
+           NOVOS ESTILOS (APENAS PARA OS POP-UPS FUNCIONAREM)
+           ================================================================== */
+        .system-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        .system-modal-content {
+            background: white; padding: 30px; border-radius: 10px;
+            width: 90%; max-width: 450px; position: relative;
+            max-height: 90vh; overflow-y: auto;
+        }
+        .close-system { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
+        
+        .form-row { margin-bottom: 15px; text-align: left; }
+        .form-row label { display: block; font-size: 0.9rem; margin-bottom: 5px; color: var(--dark); font-weight: 600; }
+        .form-row input, .form-row select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
+        
+        .cart-badge-count {
+            background: var(--red); color: white; border-radius: 50%; 
+            font-size: 0.7rem; padding: 2px 6px; 
+            position: absolute; top: -8px; right: -8px;
+            display: none; /* Só mostra se tiver item */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================= MODAIS DO SISTEMA ======================= -->
+
+    <!-- MODAL 1: CHECKOUT RÁPIDO (OPÇÃO A) -->
+    <div id="modalCarrinho" class="system-modal">
+        <div class="system-modal-content">
+            <span class="close-system" onclick="fecharModal('modalCarrinho')">&times;</span>
+            <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">🛒 Seu Pedido</h2>
+            
+            <div id="listaCarrinho" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                <!-- Itens via JS -->
+            </div>
+            <div style="text-align: right; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px;" id="totalCarrinho">
+                Total: R$ 0,00
+            </div>
+
+            <div class="form-row">
+                <label>Seu Nome</label>
+                <input type="text" id="nomeCliente" placeholder="Ex: João Silva">
+            </div>
+            <div class="form-row">
+                <label>Endereço de Entrega</label>
+                <input type="text" id="enderecoCliente" placeholder="Rua, Número, Bairro">
+            </div>
+            <div class="form-row">
+                <label>Pagamento</label>
+                <select id="pagamentoCliente">
+                    <option>PIX (5% OFF)</option>
+                    <option>Cartão de Crédito</option>
+                    <option>Cartão de Débito</option>
+                    <option>Dinheiro</option>
+                </select>
+            </div>
+
+            <button class="btn-buy" onclick="enviarZap()" style="width: 100%;">
+                <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 2: CADASTRO FIDELIDADE (OPÇÃO B) -->
+    <div id="modalFidelidade" class="system-modal">
+        <div class="system-modal-content" style="text-align: center;">
+            <span class="close-system" onclick="fecharModal('modalFidelidade')">&times;</span>
+            <i class="fas fa-crown" style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;"></i>
+            <h2 style="color: var(--dark); margin-bottom: 5px;">Clube VIP</h2>
+            <p style="color: #666; margin-bottom: 20px;">Preencha seus dados completos para acumular pontos.</p>
+
+            <form onsubmit="event.preventDefault(); alert('Cadastro realizado com sucesso!'); fecharModal('modalFidelidade');">
+                <div class="form-row"><input type="text" placeholder="Nome Completo" required></div>
+                <div class="form-row"><input type="email" placeholder="E-mail" required></div>
+                <div class="form-row"><input type="text" placeholder="CPF" required></div>
+                <div class="form-row"><input type="password" placeholder="Crie uma Senha" required></div>
+                <button class="btn-buy" style="background: var(--primary); color: #000; width: 100%;">CADASTRAR</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================= LAYOUT ORIGINAL ======================= -->
+
+    <!-- BOTÃO WHATSAPP DUPLO (FLUTUANTE) -->
+    <div class="whatsapp-float">
+        <div class="whatsapp-menu">
+            <div style="font-size: 0.8rem; color: #999; text-align: center; margin-bottom: 5px;">Fale Conosco:</div>
+            <a href="https://wa.me/5532999628414" class="whatsapp-item">
+                <i class="fab fa-whatsapp"></i>
+                <div><span class="wa-name">Théo</span><span class="wa-num">99962-8414</span></div>
+            </a>
+            <a href="https://wa.me/5532998062498" class="whatsapp-item">
+                <i class="fab fa-whatsapp"></i>
+                <div><span class="wa-name">Matheus</span><span class="wa-num">99806-2498</span></div>
+            </a>
+        </div>
+        <div class="whatsapp-btn-main"><i class="fab fa-whatsapp"></i></div>
+    </div>
+
+    <!-- MODAL IDADE (MANTIDO) -->
+    <div class="modal-overlay" id="ageModal">
+        <div class="modal-box">
+            <img src="https://i.postimg.cc/J7JXtLYg/Casa-Da-Birita-2.png" alt="Logo" class="logo-img" style="height: 100px; mix-blend-mode: multiply; margin-bottom: 20px;">
+            <h2 style="margin-bottom: 15px;">Você tem +18 anos?</h2>
+            <p style="color: #666; margin-bottom: 25px;">A venda de bebidas alcoólicas é proibida para menores de 18 anos.</p>
+            <button class="btn-age" style="background: #ddd;" onclick="alert('Acesso negado.')">NÃO</button>
+            <button class="btn-age btn-yes" onclick="document.getElementById('ageModal').style.display='none'">SIM, TENHO +18</button>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div class="top-bar"><i class="fas fa-truck"></i> ENTREGA EXPRESSA EM TODA A REGIÃO</div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-main">
+            <a href="#" class="logo-container"><img src="https://i.postimg.cc/J7JXtLYg/Casa-Da-Birita-2.png" alt="Casa da Birita" class="logo-img"></a>
+            <div class="search-bar"><input type="text" placeholder="Busque sua bebida..."></div>
+            
+            <div class="nav-icons">
+                <a href="https://www.instagram.com/casa.da.birita" target="_blank" title="Siga nosso Instagram">
+                    <i class="fab fa-instagram" style="font-size: 1.4rem;"></i>
+                </a>
+                
+                <!-- ÍCONE CARRINHO (Agora abre o Modal) -->
+                <div class="cart-trigger" onclick="abrirModal('modalCarrinho')">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="category-menu">
+            <ul class="menu-list">
+                <li><a href="#combos">COMBOS</a></li>
+                <li><a href="#whiskys">WHISKYS</a></li>
+                <li><a href="#vodkas">VODKAS</a></li>
+                <li><a href="#gins">GINS</a></li>
+                <!-- Botão Fidelidade (Agora abre o Modal Cadastro) -->
+                <li><a href="#" onclick="abrirModal('modalFidelidade')" style="color: var(--primary);">👑 CLUBE VIP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <h2>COMBOS ESPECIAIS</h2>
+            <p>A festa completa com o melhor preço.</p>
+            <a href="#combos" class="btn-hero">VER COMBOS</a>
+        </div>
+    </section>
+
+    <!-- COMBOS -->
+    <div class="container" id="combos">
+        <h3 class="section-title">🔥 Combos Mais Vendidos</h3>
+        <div class="product-grid">
+            <!-- Produto 1 -->
+            <div class="product-card">
+                <span class="badge">CAMPEÃO</span>
+                <img src="https://images.unsplash.com/photo-1629205608674-8b5e282467d3?q=80&w=600" class="product-img">
+                <div class="product-cat">Combo</div>
+                <div class="product-name">Cavalo Branco + Gelo + Energético 2L</div>
+                <div class="new-price">R$ 119,90</div>
+                <!-- Botão alterado para Adicionar ao Carrinho -->
+                <button class="btn-buy" onclick="adicionarCarrinho('Combo Cavalo Branco', 119.90)">ADICIONAR</button>
+            </div>
+            
+            <!-- Produto 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&w=600" class="product-img">
+                <div class="product-cat">Combo</div>
+                <div class="product-name">Tanqueray + Gelo + Tônicas</div>
+                <div class="new-price">R$ 159,90</div>
+                <!-- Botão alterado para Adicionar ao Carrinho -->
+                <button class="btn-buy" onclick="adicionarCarrinho('Combo Tanqueray', 159.90)">ADICIONAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO FIDELIDADE -->
+    <section class="fidelidade-section" id="fidelidade">
+        <div class="fidelidade-box">
+            <i class="fas fa-crown crown-icon"></i>
+            <h2>CLUBE DA BIRITA</h2>
+            <p style="margin-top: 15px; font-size: 1.1rem;">Entre para nosso clube exclusivo e troque pontos por bebidas!</p>
+            
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h4>Cadastre-se</h4>
+                    <p>É grátis e rápido</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h4>Compre</h4>
+                    <p>Cada R$ 1,00 = 1 Ponto</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h4 style="color: #d4af37;">GANHE DON LUIZ</h4>
+                    <p>Troque seus pontos!</p>
+                </div>
+            </div>
+
+            <!-- Botão alterado para Abrir Cadastro -->
+            <button onclick="abrirModal('modalFidelidade')" class="btn-hero" style="display: inline-block; margin-top: 30px; background: var(--primary); color: #000; border:none; font-size:1rem;">QUERO PARTICIPAR</button>
+        </div>
+    </section>
+
+    <!-- FOOTER (MANTIDO) -->
+    <footer style="background: #1a1a1a; color: white; padding: 40px 0; margin-top: 20px; text-align: center;">
+        <div class="container">
+            <img src="https://i.postimg.cc/J7JXtLYg/Casa-Da-Birita-2.png" alt="Casa da Birita Logo" class="logo-footer">
+            
+            <div style="margin: 30px 0; border-top: 1px solid #333; padding-top: 20px;">
+                <p style="margin-bottom: 10px; font-size: 1.1rem;">Fale com a gente:</p>
+                <p><i class="fab fa-whatsapp" style="color: #25D366; margin-right: 5px;"></i> (32) 99962-8414 (Théo)</p>
+                <p><i class="fab fa-whatsapp" style="color: #25D366; margin-right: 5px;"></i> (32) 99806-2498 (Matheus)</p>
+            </div>
+
+            <a href="https://www.instagram.com/casa.da.birita" target="_blank" style="text-decoration: none; color: white; display: inline-flex; align-items: center; gap: 10px; border: 1px solid #333; padding: 10px 20px; border-radius: 30px; margin-bottom: 20px; transition: 0.3s;">
+                <i class="fab fa-instagram" style="font-size: 1.2rem;"></i>
+                Siga @casa.da.birita
+            </a>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">© 2026 Casa da Birita</p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DO SISTEMA (JAVASCRIPT) -->
+    <script>
+        let carrinho = [];
+
+        function adicionarCarrinho(nome, preco) {
+            carrinho.push({ nome, preco });
+            atualizarCarrinhoUI();
+            alert(nome + " adicionado ao carrinho!");
+        }
+
+        function atualizarCarrinhoUI() {
+            const count = document.getElementById('cartCount');
+            count.innerText = carrinho.length;
+            count.style.display = carrinho.length > 0 ? 'block' : 'none';
+
+            const lista = document.getElementById('listaCarrinho');
+            const totalEl = document.getElementById('totalCarrinho');
+            
+            if (carrinho.length === 0) {
+                lista.innerHTML = '<p style="color:#999; text-align:center;">Seu carrinho está vazio.</p>';
+                totalEl.innerText = 'Total: R$ 0,00';
+            } else {
+                let html = '';
+                let total = 0;
+                carrinho.forEach(item => {
+                    total += item.preco;
+                    html += `<div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                                <span>${item.nome}</span>
+                                <span>R$ ${item.preco.toFixed(2)}</span>
+                             </div>`;
+                });
+                lista.innerHTML = html;
+                totalEl.innerText = 'Total: R$ ' + total.toFixed(2);
+            }
+        }
+
+        function enviarZap() {
+            if(carrinho.length === 0) return alert('Adicione itens antes de pedir!');
+            
+            const nome = document.getElementById('nomeCliente').value;
+            const end = document.getElementById('enderecoCliente').value;
+            const pag = document.getElementById('pagamentoCliente').value;
+
+            if(!nome || !end) return alert('Preencha seu nome e endereço!');
+
+            let msg = `*NOVO PEDIDO (SITE)* 🛒\n\n*Cliente:* ${nome}\n*Endereço:* ${end}\n*Pagamento:* ${pag}\n\n*ITENS:*\n`;
+            let total = 0;
+            carrinho.forEach(item => {
+                msg += `- ${item.nome} (R$ ${item.preco.toFixed(2)})\n`;
+                total += item.preco;
+            });
+            msg += `\n*TOTAL: R$ ${total.toFixed(2)}*`;
+
+            // Envia para o Théo
+            window.open(`https://wa.me/5532999628414?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function fecharModal(id) { document.getElementById(id).style.display = 'none'; }
+    </script>
+
+</body>
+</html>
